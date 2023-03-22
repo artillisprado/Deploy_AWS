@@ -1,0 +1,25 @@
+version: '3.9'
+#SERVICES
+services:
+
+  ####SABIA-STREAMLIT####
+  sabia-odg:
+    container_name: projeto-3-app
+    image: sabia:latest
+    environment:
+      SABIA_HOME: "/home/projeto-3-app"
+    build: 
+      dockerfile: ./Dockerfile
+      context: ../
+    volumes:
+      - sabia-data:/home/
+    ports:
+      - 8501:8501
+    networks:
+      - odg-network
+
+volumes:
+  sabia-data:
+networks:
+  odg-network:
+    driver: bridge
